@@ -13,7 +13,7 @@ case class FsmInterfaceRoutes()
 
   @cask.post("/ping")
   def ping(request: cask.Request) = {
-    // specifying 'ac' context specifically since cask uses castor too.
+    // specifying 'ac' context explicitly since cask uses castor too.
     val pp = new PingPongPlayer(java.time.Duration.ofMillis(20))(ContextPrefs.ac)
   }
 
