@@ -1,4 +1,4 @@
-name := "cask.fsm.interface"
+name := "fsm-interface"
 organization := "au.com.carringbushsw"
 organizationName := "carringbush software"
 version := "1.0-SNAPSHOT"
@@ -12,7 +12,10 @@ logBuffered in Test := false
 libraryDependencies ++= Seq(
   "com.lihaoyi" %% "cask" % "0.5.6",
   "com.lihaoyi" %% "requests" % "0.5.0",
-  "com.lihaoyi" %% "utest" % "0.7.3" % "test"
+  "com.lihaoyi" %% "utest" % "0.7.3" % "test",
+
+  "au.com.carringbushsw" %% "fsm-machine" % "1.0-SNAPSHOT"
+
   //"org.scalactic" %% "scalactic" % "3.0.8",
   //"org.scalatest" %% "scalatest" % "3.0.8" % "test"
 )
