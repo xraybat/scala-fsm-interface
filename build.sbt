@@ -1,13 +1,12 @@
 name := "cask.fsm.interface"
-
+organization := "au.com.carringbushsw"
+organizationName := "carringbush software"
 version := "1.0-SNAPSHOT"
 
 scalaVersion := "2.13.1"
-
-logBuffered in Test := false
-
 scalacOptions ++= Seq("-unchecked", "-deprecation")
 
+logBuffered in Test := false
 //resolvers += "typesafe" at "http://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies ++= Seq(
