@@ -3,7 +3,7 @@ package fsm.interface
 import io.undertow.Undertow
 import utest._
 
-object FsmInterfaceTests extends TestSuite{
+object FsmInterfaceTests extends TestSuite {
   def withServer[T](example: cask.main.Main)(f: String => T): T = {
     val server = Undertow.builder
       .addHttpListener(8080, "localhost")
@@ -19,16 +19,15 @@ object FsmInterfaceTests extends TestSuite{
 
   } // withServer
 
-  val tests = Tests{
-    test("FsmInterface") - withServer(FsmInterfaceMain){ host =>
-      val success = requests.get(host)
-
-      success.text() ==> "hello, world!"
+  val tests = Tests {
+    test("echo") - withServer(FsmInterfaceMain) { host =>
+      val success = requests.get(s"$host/echo")
+      success.text() ==> "{ available }"
       success.statusCode ==> 200
+    }
 
+    test("doesnt-exist") - withServer(FsmInterfaceMain) { host =>
       requests.get(s"$host/doesnt-exist", check = false).statusCode ==> 404
-      requests.get(s"$host/do-thing", check = false).statusCode ==> 404
-
-    } // tests.FsmInterface
+    }
   } // tests
 } // FsmInterfaceTests

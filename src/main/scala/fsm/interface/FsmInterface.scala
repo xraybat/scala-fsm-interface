@@ -8,8 +8,8 @@ case class FsmInterfaceRoutes()
   (implicit val log: cask.Logger)
     extends cask.Routes {
 
-  @cask.get("/")
-  def hello() = "hello, world!"
+  @cask.get("/echo")
+  def hello() = "{ available }"
 
   @cask.post("/ping")
   def ping(request: cask.Request) = {
