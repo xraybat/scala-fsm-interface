@@ -27,7 +27,6 @@ object FsmInterfaceTests extends TestSuite{
       success.statusCode ==> 200
 
       requests.get(s"$host/doesnt-exist", check = false).statusCode ==> 404
-      requests.post(s"$host/do-thing", data = "hello").text() ==> "olleh"
       requests.get(s"$host/do-thing", check = false).statusCode ==> 404
 
     } // tests.FsmInterface
