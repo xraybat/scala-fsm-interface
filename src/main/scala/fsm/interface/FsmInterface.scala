@@ -1,5 +1,8 @@
 package fsm.interface
 
+import fsm.machine._
+import fsm.machine.pingpong._
+
 // split routes from main
 case class FsmInterfaceRoutes()
   (implicit val log: cask.Logger)
@@ -8,8 +11,11 @@ case class FsmInterfaceRoutes()
   @cask.get("/")
   def hello() = "hello, world!"
 
-  @cask.post("/do-thing")
-  def doThing(request: cask.Request) = request.text().reverse
+  @cask.post("/ping")
+  def ping(request: cask.Request) = {
+    // specifying 'ac' context specifically since cask uses castor too.
+    val pp = new PingPongPlayer(java.time.Duration.ofMillis(20))(ContextPrefs.ac)
+  }
 
   initialize()
 
