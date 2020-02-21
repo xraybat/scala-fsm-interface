@@ -1,6 +1,7 @@
 package fsm.interface
 
 import fsm.machine.pingpong._
+import upickle.default._
 
 // split routes from main
 case class FsmInterfaceRoutes()
@@ -8,7 +9,7 @@ case class FsmInterfaceRoutes()
     extends cask.Routes {
 
   @cask.get("/echo")
-  def echo() = "{ response: \"available\" }" // qu: use upickle for these responses??
+  def echo() = ujson.write(ujson.Obj("response" -> ujson.Str("available")))
 
   @cask.post("/ping")
   def ping(request: cask.Request) = {
@@ -18,7 +19,7 @@ case class FsmInterfaceRoutes()
     /*Thread.sleep(200)
     assert(pp.state == pp.AwaitingReturn()) // straight away?? NO!!
     */
-    "{ response: \"pinged\" }"
+    ujson.write(ujson.Obj("response" -> ujson.Str("pinged")))
   }
 
   initialize()

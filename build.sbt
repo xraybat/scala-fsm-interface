@@ -11,6 +11,7 @@ logBuffered in Test := false
 
 libraryDependencies ++= Seq(
   "com.lihaoyi" %% "cask" % "0.5.6",
+  "com.lihaoyi" %% "upickle" % "0.9.5",
   "com.lihaoyi" %% "requests" % "0.5.0",
   "com.lihaoyi" %% "pprint" % "0.5.6",
   "com.lihaoyi" %% "utest" % "0.7.3" % "test",

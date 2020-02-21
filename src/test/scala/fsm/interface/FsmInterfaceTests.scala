@@ -2,6 +2,8 @@ package fsm.interface
 
 import io.undertow.Undertow
 import utest._
+import upickle.default._
+import pprint._
 
 object FsmInterfaceTests extends TestSuite {
   def withServer[T](example: cask.main.Main)(f: String => T): T = {
@@ -23,7 +25,7 @@ object FsmInterfaceTests extends TestSuite {
     test("echo") - withServer(FsmInterfaceMain) { host =>
       val success = requests.get(s"$host/echo")
       success.statusCode ==> 200
-      success.text() ==> "{ response: \"available\" }"
+      success.text() ==> ujson.write(ujson.Obj("response" -> ujson.Str("available")))
     }
 
     test("doesnt-exist") - withServer(FsmInterfaceMain) { host =>
@@ -33,7 +35,7 @@ object FsmInterfaceTests extends TestSuite {
     test("ping") - withServer(FsmInterfaceMain) { host =>
       val success = requests.post(s"$host/ping")
       success.statusCode ==> 200
-      success.text() ==> "{ response: \"pinged\" }"
+      success.text() ==> ujson.write(ujson.Obj("response" -> ujson.Str("pinged")))
     }
   } // tests
 } // FsmInterfaceTests
