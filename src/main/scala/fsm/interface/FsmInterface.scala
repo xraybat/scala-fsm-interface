@@ -9,12 +9,16 @@ case class FsmInterfaceRoutes()
     extends cask.Routes {
 
   @cask.get("/echo")
-  def hello() = "{ available }"
+  def echo() = "{ available }" // qu: use upickle for these responses??
 
   @cask.post("/ping")
   def ping(request: cask.Request) = {
-    // specifying 'ac' context explicitly since cask uses castor too.
     val pp = new PingPongPlayer(java.time.Duration.ofMillis(20))(ContextPrefs.ac)
+    assert(pp.initialState == pp.Idle())
+    //pp.send(Ping())
+    /*Thread.sleep(200)
+    assert(pp.state == pp.AwaitingReturn()) // straight away?? NO!!
+    */
     "{ pinged }"
   }
 
