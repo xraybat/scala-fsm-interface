@@ -1,6 +1,5 @@
 package fsm.interface
 
-import fsm.machine._
 import fsm.machine.pingpong._
 
 // split routes from main
@@ -13,9 +12,9 @@ case class FsmInterfaceRoutes()
 
   @cask.post("/ping")
   def ping(request: cask.Request) = {
-    val pp = new PingPongPlayer(java.time.Duration.ofMillis(20))(ContextPrefs.ac)
+    val pp = new PingPongPlayer(java.time.Duration.ofMillis(20))
     assert(pp.initialState == pp.Idle())
-    //pp.send(Ping())
+    pp.send(Ping())
     /*Thread.sleep(200)
     assert(pp.state == pp.AwaitingReturn()) // straight away?? NO!!
     */
