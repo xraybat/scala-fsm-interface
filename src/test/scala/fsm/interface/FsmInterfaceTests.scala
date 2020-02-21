@@ -23,7 +23,7 @@ object FsmInterfaceTests extends TestSuite {
     test("echo") - withServer(FsmInterfaceMain) { host =>
       val success = requests.get(s"$host/echo")
       success.statusCode ==> 200
-      success.text() ==> "{ available }"
+      success.text() ==> "{ response: \"available\" }"
     }
 
     test("doesnt-exist") - withServer(FsmInterfaceMain) { host =>
@@ -33,7 +33,7 @@ object FsmInterfaceTests extends TestSuite {
     test("ping") - withServer(FsmInterfaceMain) { host =>
       val success = requests.post(s"$host/ping")
       success.statusCode ==> 200
-      success.text() ==> "{ pinged }"
+      success.text() ==> "{ response: \"pinged\" }"
     }
   } // tests
 } // FsmInterfaceTests

@@ -8,17 +8,17 @@ case class FsmInterfaceRoutes()
     extends cask.Routes {
 
   @cask.get("/echo")
-  def echo() = "{ available }" // qu: use upickle for these responses??
+  def echo() = "{ response: \"available\" }" // qu: use upickle for these responses??
 
   @cask.post("/ping")
   def ping(request: cask.Request) = {
     val pp = new PingPongPlayer(java.time.Duration.ofMillis(20))
     assert(pp.initialState == pp.Idle())
-    pp.send(Ping())
+    //pp.send(Ping())
     /*Thread.sleep(200)
     assert(pp.state == pp.AwaitingReturn()) // straight away?? NO!!
     */
-    "{ pinged }"
+    "{ response: \"pinged\" }"
   }
 
   initialize()
