@@ -13,12 +13,20 @@ case class FsmInterfaceRoutes()
 
   @cask.post("/ping")
   def ping(request: cask.Request) = {
+    // send ping to local actor...
     val pp = new PingPongPlayer(java.time.Duration.ofMillis(20))
     assert(pp.initialState == pp.Idle())
     pp.send(Ping())
     Thread.sleep(200)
     assert(pp.state == pp.AwaitingReturn()) // straight away?? NO!!
     ujson.write(ujson.Obj("response" -> ujson.Str("pinged")))
+
+    // ...and http request to remote actor
+    //val remoteHost = FsmInterfaceProperties.remoteHost
+    /*val success = requests.post(s"$remoteHost/ping")
+    assert(success.statusCode == 200)
+    assert(success.text() == ujson.write(ujson.Obj("response" -> ujson.Str("pinged"))))
+*/
   }
 
   initialize()

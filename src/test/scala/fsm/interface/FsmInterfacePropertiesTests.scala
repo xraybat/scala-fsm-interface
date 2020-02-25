@@ -10,5 +10,9 @@ object FsmInterfacePropertiesTests extends TestSuite {
     test("localHost") { 
       FsmInterfaceProperties.localHost ==> "http://localhost:8080"
     }
+
+    test("remoteHost") { 
+      assert(FsmInterfaceProperties.remoteHost.length > 0)
+    }
   } // tests
 } // FsmInterfacePropertiesTests

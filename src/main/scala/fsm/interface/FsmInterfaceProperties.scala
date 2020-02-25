@@ -7,5 +7,6 @@ object FsmInterfaceProperties {
   private val jsonProperties = ujson.read(Source.fromResource("FsmInterface.properties.xml").getLines.mkString)
 
   val localHost: String = jsonProperties("localHost").str
+  val remoteHost: String = jsonProperties("remoteHost").str
 
 } // FsmInterfaceProperties
