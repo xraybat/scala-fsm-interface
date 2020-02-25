@@ -18,7 +18,7 @@ case class FsmInterfaceRoutes()
     assert(pp.initialState == pp.Idle())
     pp.send(Ping())
     Thread.sleep(200)
-    assert(pp.state == pp.AwaitingReturn()) // straight away?? NO!!
+    //assert(pp.state == pp.AwaitingReturn()) // straight away?? NO!!
     ujson.write(ujson.Obj("response" -> ujson.Str("pinged")))
 
     // ...and http request to remote actor
