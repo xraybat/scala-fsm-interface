@@ -1,6 +1,6 @@
 import mill._, scalalib._
 
-object machine extends ScalaModule{
+object interface extends ScalaModule{
   def scalaVersion = "2.13.1"
 
   def ivyDeps = Agg(
