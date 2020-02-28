@@ -9,7 +9,7 @@ object interface extends ScalaModule{
     ivy"com.lihaoyi::requests:0.5.1",
     ivy"com.lihaoyi::pprint:0.5.9",
 
-    //ivy"au.com.carringbushsw::fsm-machine:1.0-SNAPSHOT"
+    ivy"au.com.carringbushsw::machine:0.0.1"
   )
   
   object test extends Tests{
