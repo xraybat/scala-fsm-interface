@@ -1,3 +1,14 @@
+// to run as an assembled jar:
+//
+//   mill interface.assembly
+//   java -cp out/interface/assembly/dest/out.jar fsm.interface.FsmInterfaceMain
+//
+// test it locally with:
+//
+//   amm interface/src/sc/fsm-interface.sc
+//
+// then run fsm-interface on separate servers
+
 package fsm.interface
 
 import fsm.machine.pingpong._
