@@ -8,13 +8,13 @@ import pprint._
 object FsmInterfaceTests extends TestSuite {
   def withServer[T](example: cask.main.Main)(f: String => T): T = {
     val server = Undertow.builder
-      .addHttpListener(8080, "localhost")
+      .addHttpListener(FsmInterfaceProperties.localPort, FsmInterfaceProperties.localHost)
       .setHandler(example.defaultHandler)
       .build
     server.start()
     
     val res =
-      try f("http://localhost:8080")
+      try f(FsmInterfaceProperties.localUrl)
       finally server.stop()
 
     res

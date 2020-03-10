@@ -1,4 +1,6 @@
 {
-  "localHost": "http://localhost:8080",
-  "remoteHost": "http://157.230.34.162:8080"
+  "localHost": "localhost",
+  "localPort": 8080,
+  "remoteHost": "157.230.34.162",
+  "remotePort": 8080
 }
