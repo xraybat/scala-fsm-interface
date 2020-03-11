@@ -11,20 +11,24 @@ trait Props {
   val remoteHost: String
   val remotePort: Int = 8080
   val remoteUrl: String
-
-} // Props
+}
 
 // *qu:* make a json struct based on trait to be fleshed out by FsmInterfaceProperties??
-
-object FsmInterfaceProperties extends Props {
-  private val jsonProperties = ujson.read(Source.fromResource("FsmInterface.properties.xml").getLines.mkString)
+abstract class JsonProps {
+  protected val jsonProperties: ujson.Value.Value
+}
+ 
+object FsmInterfaceProperties extends JsonProps with Props {
+  final override protected val jsonProperties: ujson.Value.Value = ujson.read(Source.fromResource("FsmInterface.properties.xml").getLines.mkString)
 
   val localHost: String = jsonProperties("localHost").str
   override val localPort: Int = jsonProperties("localPort").num.toInt
-  val localUrl: String = "http://" + localHost + ":" + localPort
+  val localUrl: String = mkUrl(localHost, localPort)
 
   val remoteHost: String = jsonProperties("remoteHost").str
   override val remotePort: Int = jsonProperties("remotePort").num.toInt
-  val remoteUrl: String = "http://" + remoteHost + ":" + remotePort
+  val remoteUrl: String = mkUrl(remoteHost, remotePort)
+
+  private def mkUrl(host: String, port: Int): String = "http://" + host + ":" + port
 
 } // FsmInterfaceProperties
