@@ -13,9 +13,8 @@ trait FsmInterfaceProps {
   val remoteUrl: String
 }
 
-// *qu:* make a json struct based on trait to be fleshed out by FsmInterfaceProperties??
 abstract class JsonProps {
-  protected val jsonProperties: ujson.Value.Value
+  protected val json: ujson.Value.Value
 }
  
 object FsmInterfaceProperties extends JsonProps with FsmInterfaceProps {
@@ -23,14 +22,14 @@ object FsmInterfaceProperties extends JsonProps with FsmInterfaceProps {
   final private val _Http: String = "http://"
   final private val _Delim: String = ":"
 
-  final override protected val jsonProperties: ujson.Value.Value = ujson.read(Source.fromResource("FsmInterface.properties.xml").getLines.mkString)
+  final override protected val json = ujson.read(Source.fromResource("FsmInterface.properties.xml").getLines.mkString)
 
-  val localHost: String = jsonProperties("localHost").str
-  override val localPort: Int = jsonProperties("localPort").num.toInt
+  val localHost = json("localHost").str
+  override val localPort: Int = json("localPort").num.toInt
   val localUrl: String = mkUrl(localHost, localPort)
 
-  val remoteHost: String = jsonProperties("remoteHost").str
-  override val remotePort: Int = jsonProperties("remotePort").num.toInt
+  val remoteHost: String = json("remoteHost").str
+  override val remotePort: Int = json("remotePort").num.toInt
   val remoteUrl: String = mkUrl(remoteHost, remotePort)
 
   private def mkUrl(host: String, port: Int): String = _Http + host + _Delim + port
