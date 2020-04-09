@@ -24,7 +24,11 @@ object FsmInterfacePropertiesTests extends TestSuite {
       FsmInterfaceProperties.remotePort ==> 8080
     }
     test("remoteUrl") { 
-      assert(FsmInterfaceProperties.remoteUrl.length > 0)
+      FsmInterfaceProperties.remoteUrl ==>
+        "http://" + 
+        FsmInterfaceProperties.remoteHost +
+        ":" +
+        FsmInterfaceProperties.remotePort
     }
   } // tests
 } // FsmInterfacePropertiesTests

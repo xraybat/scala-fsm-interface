@@ -3,7 +3,7 @@ package fsm.interface
 import scala.io.Source
 import upickle.default._
 
-trait Props {
+trait FsmInterfaceProps {
   val localHost: String
   val localPort: Int = 8080
   val localUrl: String
@@ -18,8 +18,8 @@ abstract class JsonProps {
   protected val jsonProperties: ujson.Value.Value
 }
  
-object FsmInterfaceProperties extends JsonProps with Props {
-  // order-dependent: these need to come first
+object FsmInterfaceProperties extends JsonProps with FsmInterfaceProps {
+  // inlined constants, order-dependent, these need to come first
   final private val _Http: String = "http://"
   final private val _Delim: String = ":"
 
