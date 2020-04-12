@@ -19,8 +19,8 @@ abstract class JsonProps {
  
 object FsmInterfaceProperties extends JsonProps with FsmInterfaceProps {
   // inlined constants, order-dependent, these need to come first
-  final private val _Http: String = "http://"
-  final private val _Delim: String = ":"
+  final private val _http: String = "http://"
+  final private val _delim: String = ":"
 
   final override protected val json = ujson.read(Source.fromResource("FsmInterface.properties.xml").getLines.mkString)
 
@@ -32,6 +32,6 @@ object FsmInterfaceProperties extends JsonProps with FsmInterfaceProps {
   override val remotePort: Int = json("remotePort").num.toInt
   val remoteUrl: String = mkUrl(remoteHost, remotePort)
 
-  private def mkUrl(host: String, port: Int): String = _Http + host + _Delim + port
+  private def mkUrl(host: String, port: Int): String = _http + host + _delim + port
 
 } // FsmInterfaceProperties
