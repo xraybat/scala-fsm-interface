@@ -16,7 +16,7 @@ trait FsmInterfaceProps {
 abstract class JsonProps {
   protected val json: ujson.Value.Value
 }
- 
+
 object FsmInterfaceProperties extends JsonProps with FsmInterfaceProps {
   // inlined constants, order-dependent, these need to come first
   final private val _http: String = "http://"
